@@ -28,6 +28,7 @@ a {
     padding-left: 50px;
     padding-right: 50px;
     min-height: 100vh;
+    max-height: calc(100vh - 200px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -56,17 +57,20 @@ a {
 @media (max-width: 1024px) {
     .container {
         width: 768px;
+        min-height: unset;
     }
 }
 
 @media (max-width: 768px) {
     .container {
         width: 640px;
+        min-height: unset;
     }
 }
 
 @media (max-width: 640px) {
     .container {
         width: 475px;
+        min-height: unset;
     }
 }
