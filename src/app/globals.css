@@ -74,3 +74,10 @@ a {
         min-height: unset;
     }
 }
+
+@media (max-width: 475px) {
+    .container {
+        width: 380px;
+        min-height: unset;
+    }
+}
