@@ -26,4 +26,4 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-https://youtu.be/vCOSTG10Y4o?t=8592
+https://youtu.be/vCOSTG10Y4o?t=8747
