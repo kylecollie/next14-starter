@@ -35,7 +35,7 @@ const postSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    description: {
+    desc: {
         type: String,
         required: true,
     },
@@ -53,4 +53,7 @@ const postSchema = new mongoose.Schema({
     },
 },
     { timestamps: true }
-); 
+);
+
+export const User = mongoose.models.User || mongoose.model("User", userSchema);
+export const Post = mongoose.models.Post || mongoose.model("Post", postSchema);
