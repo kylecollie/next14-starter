@@ -4,6 +4,16 @@ import PostUser from '@/components/postUser/postUser';
 import { Suspense } from 'react';
 import { getPost } from '@/lib/data';
 
+export const generateMetadata = async ({ params }) =>
+{
+    const { slug } = params;
+    const post = await getPost(slug);
+    return {
+        title: post?.title,
+        description: post?.desc
+    };
+};
+
 const SinglePostPage = async ({ params: params }) =>
 {
     const { slug } = params;
@@ -18,7 +28,7 @@ const SinglePostPage = async ({ params: params }) =>
             <div className={styles.textContainer}>
                 <h1 className={styles.title}>{post?.title}</h1>
                 <div className={styles.detail}>
-                    
+
                     {post && <Suspense fallback={<div>Loading...</div>}>
                         <PostUser userId={post.userId} />
                     </Suspense>}
