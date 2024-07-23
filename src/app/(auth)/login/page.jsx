@@ -1,7 +1,10 @@
-import { signIn } from "@/lib/auth";
+import { auth, signIn } from "@/lib/auth";
 
-const LoginPage = () =>
+const LoginPage = async () =>
 {
+    const session = await auth();
+
+    console.log(session);
 
     const handleGithubLogin = async () =>
     {
