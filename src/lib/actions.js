@@ -1,6 +1,8 @@
 'use server';
 
 import { signIn, signOut } from "./auth";
+import { User } from "./models";
+import { connectToDb } from "./utils";
 
 
 export const handleGithubLogin = async () =>
@@ -13,9 +15,38 @@ export const handleLogout = async () =>
     await signOut();
 };
 
-export const regiter = async (formData) =>
+export const register = async (formData) =>
 {
-    const { username, email, password } = Object.fromEntries(formData);
+    const { username, email, password, passwordRepeat, img } = Object.fromEntries(formData);
 
-    
+    if (password !== passwordRepeat) return 'Passwords do not match';
+
+    try
+    {
+        connectToDb();
+
+        const user = await User.findOne({ username });
+
+        if (user) return 'Username already exists';
+
+
+        const newUser = new User({
+            username,
+            email,
+            password,
+            img
+        });
+
+        await newUser.save();
+        console.log("saved to db");
+
+        return true;
+
+    } catch (error)
+    {
+        console.log(error);
+        return { error: error.message };
+    }
+
+
 };
