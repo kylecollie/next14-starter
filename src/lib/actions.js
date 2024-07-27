@@ -3,7 +3,7 @@
 import { signIn, signOut } from "./auth";
 import { User } from "./models";
 import { connectToDb } from "./utils";
-import bcypt from 'bcrypt';
+import bcypt from 'bcryptjs';
 
 
 export const handleGithubLogin = async () =>
@@ -51,5 +51,21 @@ export const register = async (formData) =>
         return { error: error.message };
     }
 
+};
+export const login = async (formData) =>
+{
+    const { username, password, } = Object.fromEntries(formData);
+
+    try
+    {
+        await signIn('credentials', {
+            username,
+            password,
+        });
+    } catch (error)
+    {
+        console.log(error);
+        return { error: error.message };
+    }
 
 };
